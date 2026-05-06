@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import db from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import leadRoutes from './routes/leadRoutes.js';
 
 dotenv.config();
 
@@ -18,8 +19,9 @@ app.get('/', (req, res) => {
   res.send('API Running');
 });
 
-// Auth Routes
+// API Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/leads', leadRoutes);
 
 // Start Server
 app.listen(PORT, () => {
