@@ -5,6 +5,7 @@ import db from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import leadRoutes from './routes/leadRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
+import dashboardRoutes from './routes/dashboardRoutes.js';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/leads', leadRoutes);
 app.use('/api/leads/:id/notes', noteRoutes);
 app.use('/api/notes', noteRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Start Server
 app.listen(PORT, () => {
