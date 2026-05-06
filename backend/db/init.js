@@ -33,9 +33,15 @@ export default function initDB(db) {
         leadId INTEGER NOT NULL,
         content TEXT NOT NULL,
         createdBy INTEGER,
+        edited BOOLEAN DEFAULT FALSE,
+        deleted BOOLEAN DEFAULT FALSE,
+        deletedAt DATETIME,
+        deletedBy INTEGER,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (leadId) REFERENCES leads(id),
-        FOREIGN KEY (createdBy) REFERENCES users(id)
+        FOREIGN KEY (createdBy) REFERENCES users(id),
+        FOREIGN KEY (deletedBy) REFERENCES users(id)
       )`, (err) => {
         if (err) {
           console.error('Error creating tables:', err.message);

@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import db from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import leadRoutes from './routes/leadRoutes.js';
+import noteRoutes from './routes/noteRoutes.js';
 
 dotenv.config();
 
@@ -22,6 +23,8 @@ app.get('/', (req, res) => {
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/leads', leadRoutes);
+app.use('/api/leads/:id/notes', noteRoutes);
+app.use('/api/notes', noteRoutes);
 
 // Start Server
 app.listen(PORT, () => {
