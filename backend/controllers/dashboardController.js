@@ -93,11 +93,20 @@ export const getDashboardStats = async (req, res) => {
       count: row.count
     }));
 
+    // 4. Recent Leads
+    const recentLeads = await query(`
+      SELECT id, leadName, companyName, email, status, dealValue 
+      FROM leads 
+      ORDER BY createdAt DESC 
+      LIMIT 5
+    `);
+
     res.json({
       summary: stats,
       statusBreakdown,
       leadSourceDistribution,
-      leadsOverTime
+      leadsOverTime,
+      recentLeads
     });
 
   } catch (error) {

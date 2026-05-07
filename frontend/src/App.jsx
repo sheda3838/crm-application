@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
 // Foundational Placeholders (UI to be built in next steps)
-const Dashboard = () => <div className="p-10 text-2xl font-bold">Dashboard (Protected)</div>;
 const Leads = () => <div className="p-10 text-2xl font-bold">Leads List (Protected)</div>;
 const LeadDetails = () => <div className="p-10 text-2xl font-bold">Lead Details (Protected)</div>;
 
