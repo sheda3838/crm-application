@@ -63,7 +63,7 @@ const Leads = () => {
     setModalLoading(true);
     try {
       if (editingLead) {
-        await API.put(`/leads/${editingLead.id}`, formData);
+        await API.patch(`/leads/${editingLead.id}`, formData);
       } else {
         await API.post('/leads', formData);
       }

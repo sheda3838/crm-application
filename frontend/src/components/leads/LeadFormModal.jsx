@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2 } from 'lucide-react';
+import { AuthContext } from '../../context/AuthContext';
 
 const LeadFormModal = ({ isOpen, onClose, onSubmit, initialData = null, loading = false }) => {
+  const { user } = useContext(AuthContext);
+
   const [formData, setFormData] = useState({
     leadName: '',
     companyName: '',
@@ -27,12 +30,12 @@ const LeadFormModal = ({ isOpen, onClose, onSubmit, initialData = null, loading 
         email: '',
         phone: '',
         leadSource: 'Organic Search',
-        assignedTo: '',
+        assignedTo: user?.id || '',
         status: 'New',
         dealValue: 0
       });
     }
-  }, [initialData, isOpen]);
+  }, [initialData, isOpen, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +47,13 @@ const LeadFormModal = ({ isOpen, onClose, onSubmit, initialData = null, loading 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    
+    const payload = {
+      ...formData,
+      assignedTo: formData.assignedTo || user?.id
+    };
+    
+    onSubmit(payload);
   };
 
   if (!isOpen) return null;
@@ -105,8 +114,8 @@ const LeadFormModal = ({ isOpen, onClose, onSubmit, initialData = null, loading 
               </div>
 
               <div>
-                <label className={labelClasses}>Phone</label>
-                <input type="text" name="phone" value={formData.phone} onChange={handleChange} className={inputClasses} placeholder="+1 (555) 000-0000" />
+                <label className={labelClasses}>Phone <span className="text-red-500">*</span></label>
+                <input required type="text" name="phone" value={formData.phone} onChange={handleChange} className={inputClasses} placeholder="+1 (555) 000-0000" />
               </div>
 
               <div>

@@ -55,7 +55,7 @@ const LeadDetails = () => {
   const handleUpdateLead = async (formData) => {
     setModalLoading(true);
     try {
-      await API.put(`/leads/${id}`, formData);
+      await API.patch(`/leads/${id}`, formData);
       setIsModalOpen(false);
       fetchLeadDetails();
     } catch (err) {
