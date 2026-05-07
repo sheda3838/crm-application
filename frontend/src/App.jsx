@@ -4,10 +4,8 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-
-// Foundational Placeholders (UI to be built in next steps)
-const Leads = () => <div className="p-10 text-2xl font-bold">Leads List (Protected)</div>;
-const LeadDetails = () => <div className="p-10 text-2xl font-bold">Lead Details (Protected)</div>;
+import Leads from './pages/Leads';
+import LeadDetails from './pages/LeadDetails';
 
 function App() {
   return (
