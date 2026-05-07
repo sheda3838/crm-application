@@ -23,8 +23,10 @@ API.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      // Use window.location.href for a hard redirect on auth failure
-      window.location.href = '/login';
+      // Only force redirect if the user isn't already on the login page
+      if (window.location.pathname !== '/login' && window.location.pathname !== '/') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
