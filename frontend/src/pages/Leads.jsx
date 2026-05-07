@@ -48,7 +48,7 @@ const Leads = () => {
     try {
       const params = {};
       if (filters.status) params.status = filters.status;
-      if (filters.source) params.source = filters.source;
+      if (filters.source) params.leadSource = filters.source;
       
       const response = await API.get('/leads', { params });
       setLeads(response.data);

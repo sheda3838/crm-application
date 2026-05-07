@@ -115,8 +115,8 @@ const LeadDetails = () => {
                   
                   {/* Profile Header */}
                   <div className="flex flex-col items-center text-center pb-8 border-b border-slate-100 dark:border-slate-800">
-                    <div className="w-24 h-24 rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white text-3xl font-black shadow-xl shadow-blue-500/20 mb-4">
-                      {lead.leadName.substring(0, 2).toUpperCase()}
+                    <div className="w-24 h-24 rounded-3xl overflow-hidden shadow-xl shadow-blue-500/20 mb-4 flex items-center justify-center bg-blue-50 dark:bg-blue-900/20">
+                      <img src="/lead.png" alt="Lead" className="w-16 h-16 object-contain" />
                     </div>
                     <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{lead.leadName}</h2>
                     <p className="text-sm font-bold text-slate-500 mt-1">{lead.companyName}</p>
