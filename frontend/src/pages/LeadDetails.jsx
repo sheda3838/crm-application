@@ -99,7 +99,7 @@ const LeadDetails = () => {
                 onClick={() => setIsModalOpen(true)}
                 className="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-sm"
               >
-                <Edit2 size={16} /> Edit Profile
+                <Edit2 size={16} /> Edit Lead
               </button>
             </div>
 

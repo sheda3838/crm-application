@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Sun, Moon, Search, Bell, User } from 'lucide-react';
+import { Sun, Moon, Search, Bell, User, Settings } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
 
 const Topbar = ({ isDarkMode, setIsDarkMode, title }) => {
@@ -32,6 +32,10 @@ const Topbar = ({ isDarkMode, setIsDarkMode, title }) => {
           <button className="p-2.5 rounded-2xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all relative active:scale-95">
             <Bell size={20} />
             <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-blue-600 rounded-full ring-4 ring-white dark:ring-slate-900"></span>
+          </button>
+
+          <button className="p-2.5 rounded-2xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all active:scale-95">
+            <Settings size={20} />
           </button>
         </div>
 

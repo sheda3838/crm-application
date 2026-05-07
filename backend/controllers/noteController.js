@@ -37,10 +37,11 @@ export const getLeadNotes = (req, res) => {
   const { id: leadId } = req.params;
 
   const query = `
-    SELECT n.*, u.name as authorName 
+    SELECT n.*, u.name as authorName, du.name as deleterName 
     FROM notes n
     LEFT JOIN users u ON n.createdBy = u.id
-    WHERE n.leadId = ? AND n.deleted = 0
+    LEFT JOIN users du ON n.deletedBy = du.id
+    WHERE n.leadId = ?
     ORDER BY n.createdAt DESC
   `;
 

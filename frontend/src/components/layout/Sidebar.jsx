@@ -10,7 +10,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
     { icon: Users, label: 'Leads', path: '/leads' },
-    { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 
   return (
@@ -30,7 +29,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             animate={{ opacity: 1, x: 0 }}
             className="font-bold text-xl text-slate-900 dark:text-white tracking-tight whitespace-nowrap"
           >
-            Nexus CRM
+            Torch Labs CRM
           </motion.span>
         )}
       </div>
@@ -39,8 +38,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       <nav className="flex-1 px-4 py-6 space-y-2">
         {menuItems.map((item) => (
           <NavLink
-            key={item.path}
+            key={item.label}
             to={item.path}
+            onClick={(e) => { if(item.label === 'Settings') e.preventDefault(); }}
             className={({ isActive }) =>
               `flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-200 group ${
                 isActive
