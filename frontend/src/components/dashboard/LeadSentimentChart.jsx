@@ -18,9 +18,6 @@ const LeadSentimentChart = ({ data }) => {
     <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.02)] h-[380px] flex flex-col">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-[15px] font-bold text-slate-900 dark:text-white">Lead Sentiment</h3>
-        <select className="text-xs font-bold text-slate-500 bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-2 py-1 outline-none">
-          <option>All Status</option>
-        </select>
       </div>
       
       <div className="h-[280px] w-full flex items-center justify-center mt-4 min-h-0 min-w-0 relative">
@@ -38,8 +35,17 @@ const LeadSentimentChart = ({ data }) => {
               <Cell key={`cell-${index}`} fill={STATUS_COLORS[entry.name] || '#94a3b8'} />
             ))}
           </Pie>
-          <Tooltip />
-          <Legend verticalAlign="bottom" height={36}/>
+          <Tooltip 
+            contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+          />
+          <Legend 
+            verticalAlign="bottom" 
+            height={36}
+            formatter={(value, entry) => {
+              const item = chartData.find(d => d.name === value);
+              return <span className="text-[11px] font-bold text-slate-500">{value}: {item ? item.value : 0}</span>;
+            }}
+          />
         </PieChart>
         
         {/* Total Overlay - Perfectly Centered */}

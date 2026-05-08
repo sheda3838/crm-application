@@ -6,12 +6,9 @@ const RepPerformanceTable = ({ data }) => {
     <div className="bg-white dark:bg-slate-900 p-6 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.02)] h-[400px] flex flex-col">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-[15px] font-bold text-slate-900 dark:text-white">Rep Performance Overview</h3>
-        <select className="text-xs font-bold text-slate-500 bg-slate-50 dark:bg-slate-800 border-none rounded-lg px-2 py-1 outline-none">
-          <option>This Month</option>
-        </select>
       </div>
       
-      <div className="flex-1 overflow-auto pr-2 custom-scrollbar">
+      <div className="flex-1 overflow-auto hide-scrollbar">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-slate-100 dark:border-slate-800">

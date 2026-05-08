@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Mail, Phone, Building, Briefcase, Calendar, Edit2, Loader2 } from 'lucide-react';
+import { ArrowLeft, Mail, Phone, Building, Briefcase, Calendar, Edit2, Loader2, User, Clock } from 'lucide-react';
 import API from '../api/axios';
 import LeadStatusBadge from '../components/leads/LeadStatusBadge';
 import NotesTimeline from '../components/notes/NotesTimeline';
@@ -126,6 +126,14 @@ const LeadDetails = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
+                  <div className="p-2.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 rounded-xl"><User size={18} /></div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Assigned To</p>
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white mt-0.5">{lead.assignedToName || 'Unassigned'}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
                   <div className="p-2.5 bg-purple-50 dark:bg-purple-900/20 text-purple-600 rounded-xl"><Building size={18} /></div>
                   <div>
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Source</p>
@@ -139,6 +147,16 @@ const LeadDetails = () => {
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Created At</p>
                     <p className="text-sm font-semibold text-slate-900 dark:text-white mt-0.5">
                       {new Date(lead.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 rounded-xl"><Clock size={18} /></div>
+                  <div>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Last Updated</p>
+                    <p className="text-sm font-semibold text-slate-900 dark:text-white mt-0.5">
+                      {new Date(lead.updatedAt).toLocaleDateString()}
                     </p>
                   </div>
                 </div>

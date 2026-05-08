@@ -11,7 +11,13 @@ const Layout = () => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
+
+  // Close sidebar on route change (mobile)
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [location.pathname]);
 
   // Sync Theme
   useEffect(() => {
@@ -34,14 +40,32 @@ const Layout = () => {
 
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-[#0a0514] transition-colors duration-300">
-      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Sidebar 
+        collapsed={collapsed} 
+        setCollapsed={setCollapsed} 
+        isOpen={isSidebarOpen} 
+        setIsOpen={setIsSidebarOpen} 
+      />
       
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <Topbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} title={getPageTitle()} />
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+        <Topbar 
+          isDarkMode={isDarkMode} 
+          setIsDarkMode={setIsDarkMode} 
+          title={getPageTitle()} 
+          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
         
-        <main className="flex-1 overflow-y-auto p-6 md:p-10">
+        <main className="flex-1 overflow-y-auto p-4 md:p-10">
           <Outlet />
         </main>
+        
+        {/* Mobile Overlay */}
+        {isSidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
       </div>
     </div>
   );

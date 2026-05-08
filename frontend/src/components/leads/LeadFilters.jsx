@@ -1,7 +1,7 @@
 import React from 'react';
 import { Search, Filter } from 'lucide-react';
 
-const LeadFilters = ({ filters, setFilters }) => {
+const LeadFilters = ({ filters, setFilters, users }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters(prev => ({ ...prev, [name]: value }));
@@ -26,8 +26,8 @@ const LeadFilters = ({ filters, setFilters }) => {
       </div>
 
       {/* Filters */}
-      <div className="flex w-full md:w-auto gap-4">
-        <div className="relative w-full md:w-48 group">
+      <div className="flex flex-col sm:flex-row w-full md:w-auto gap-4">
+        <div className="relative w-full md:w-40 group">
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-500 transition-colors">
             <Filter size={16} />
           </div>
@@ -47,7 +47,7 @@ const LeadFilters = ({ filters, setFilters }) => {
           </select>
         </div>
 
-        <div className="relative w-full md:w-48 group">
+        <div className="relative w-full md:w-40 group">
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-500 transition-colors">
             <Filter size={16} />
           </div>
@@ -64,6 +64,23 @@ const LeadFilters = ({ filters, setFilters }) => {
             <option value="Cold Email">Cold Email</option>
             <option value="Event">Event</option>
             <option value="Facebook Ads">Facebook Ads</option>
+          </select>
+        </div>
+
+        <div className="relative w-full md:w-44 group">
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-500 transition-colors">
+            <Filter size={16} />
+          </div>
+          <select 
+            name="assignedTo"
+            value={filters.assignedTo}
+            onChange={handleChange}
+            className="w-full pl-10 pr-8 py-3.5 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 rounded-[1.5rem] focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm font-bold text-slate-700 dark:text-slate-300 appearance-none cursor-pointer transition-all"
+          >
+            <option value="">All Assignees</option>
+            {users.map(user => (
+              <option key={user.id} value={user.id}>{user.name}</option>
+            ))}
           </select>
         </div>
       </div>

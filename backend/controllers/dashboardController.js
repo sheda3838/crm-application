@@ -24,6 +24,7 @@ export const getDashboardStats = async (req, res) => {
     const stats = {
       totalLeads: { value: 0, trend: '+12%' },
       totalRevenue: { value: 0, trend: '+8%' },
+      totalEstimatedValue: { value: 0, trend: '+15%' },
       conversionRate: { value: 0, trend: '+4%' },
       activeDeals: { value: 0, trend: '-2%' }
     };
@@ -36,6 +37,7 @@ export const getDashboardStats = async (req, res) => {
       const value = row.statusValue || 0;
       
       stats.totalLeads.value += count;
+      stats.totalEstimatedValue.value += value;
       statusBreakdown[row.status] = count;
       
       if (row.status === 'Won') {

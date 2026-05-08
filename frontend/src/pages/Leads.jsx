@@ -16,12 +16,27 @@ const Leads = () => {
   const [filters, setFilters] = useState({
     search: '',
     status: '',
-    source: ''
+    source: '',
+    assignedTo: ''
   });
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await API.get('/auth/users');
+        setUsers(response.data);
+      } catch (err) {
+        console.error('Error fetching users:', err);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   useEffect(() => {
     fetchLeads();
-  }, [filters.status, filters.source]); // Only refetch on status/source change, search is frontend filtered for speed
+  }, [filters.status, filters.source, filters.assignedTo]); // Only refetch on status/source/assignedTo change
 
   const fetchLeads = async () => {
     setLoading(true);
@@ -29,6 +44,7 @@ const Leads = () => {
       const params = {};
       if (filters.status) params.status = filters.status;
       if (filters.source) params.leadSource = filters.source;
+      if (filters.assignedTo) params.assignedTo = filters.assignedTo;
       
       const response = await API.get('/leads', { params });
       setLeads(response.data);
@@ -109,7 +125,7 @@ const Leads = () => {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-          <LeadFilters filters={filters} setFilters={setFilters} />
+          <LeadFilters filters={filters} setFilters={setFilters} users={users} />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>

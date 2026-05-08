@@ -62,7 +62,13 @@ export const getLeads = (req, res) => {
 // Get Single Lead
 export const getLeadById = (req, res) => {
   const { id } = req.params;
-  db.get('SELECT * FROM leads WHERE id = ?', [id], (err, row) => {
+  const query = `
+    SELECT l.*, u.name as assignedToName 
+    FROM leads l
+    LEFT JOIN users u ON l.assignedTo = u.id
+    WHERE l.id = ?
+  `;
+  db.get(query, [id], (err, row) => {
     if (err) {
       return res.status(500).json({ message: 'Error fetching lead', error: err.message });
     }

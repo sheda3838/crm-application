@@ -82,3 +82,12 @@ export const login = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
+export const getUsers = (req, res) => {
+  db.all('SELECT id, name FROM users', [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error fetching users', error: err.message });
+    }
+    res.json(rows);
+  });
+};

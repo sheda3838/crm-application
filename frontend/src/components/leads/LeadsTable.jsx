@@ -61,7 +61,7 @@ const LeadsTable = ({ leads, onEdit, onDelete }) => {
                     <span className="text-sm font-black text-slate-900 dark:text-white">${lead.dealValue?.toLocaleString() || 0}</span>
                   </td>
                   <td className="px-8 py-5 whitespace-nowrap text-right">
-                    <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center justify-end gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                       <button 
                         onClick={() => navigate(`/leads/${lead.id}`)}
                         className="p-2 bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:hover:bg-blue-900/40 rounded-lg transition-colors"

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { LayoutDashboard, Users, LogOut, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AuthContext } from '../../context/AuthContext';
 
-const Sidebar = ({ collapsed, setCollapsed }) => {
+const Sidebar = ({ collapsed, setCollapsed, isOpen, setIsOpen }) => {
   const { logout } = useContext(AuthContext);
 
   const menuItems = [
@@ -12,26 +12,40 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
     { icon: Users, label: 'Leads', path: '/leads' },
   ];
 
+  const sidebarWidth = collapsed ? 80 : 280;
+
   return (
     <motion.aside
       initial={false}
-      animate={{ width: collapsed ? 80 : 280 }}
-      className="bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-screen sticky top-0 flex flex-col transition-colors duration-300 z-50 overflow-hidden"
+      animate={{ 
+        width: typeof window !== 'undefined' && window.innerWidth < 768 ? 280 : sidebarWidth,
+        x: typeof window !== 'undefined' && window.innerWidth < 768 ? (isOpen ? 0 : -280) : 0
+      }}
+      transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+      className="bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-screen sticky top-0 flex flex-col transition-colors duration-300 z-50 overflow-hidden fixed md:sticky left-0"
     >
       {/* Logo Section */}
-      <div className="p-6 flex items-center gap-4">
-        <div className="min-w-[32px] w-8 h-8">
-          <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+      <div className="p-6 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="min-w-[32px] w-8 h-8">
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+          </div>
+          {(!collapsed || (typeof window !== 'undefined' && window.innerWidth < 768)) && (
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="font-bold text-xl text-slate-900 dark:text-white tracking-tight whitespace-nowrap"
+            >
+              Torch Labs CRM
+            </motion.span>
+          )}
         </div>
-        {!collapsed && (
-          <motion.span
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="font-bold text-xl text-slate-900 dark:text-white tracking-tight whitespace-nowrap"
-          >
-            Torch Labs CRM
-          </motion.span>
-        )}
+        <button 
+          onClick={() => setIsOpen(false)}
+          className="p-2 -mr-2 text-slate-400 hover:text-slate-600 md:hidden"
+        >
+          <ChevronLeft size={24} />
+        </button>
       </div>
 
       {/* Nav Items */}
@@ -50,7 +64,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             }
           >
             <item.icon size={22} className="shrink-0" />
-            {!collapsed && (
+            {(!collapsed || (typeof window !== 'undefined' && window.innerWidth < 768)) && (
               <motion.span 
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
@@ -70,7 +84,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
           className="flex items-center gap-4 px-4 py-3.5 w-full rounded-2xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all font-medium group"
         >
           <LogOut size={22} className="shrink-0" />
-          {!collapsed && (
+          {(!collapsed || (typeof window !== 'undefined' && window.innerWidth < 768)) && (
             <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="whitespace-nowrap">
               Logout
             </motion.span>

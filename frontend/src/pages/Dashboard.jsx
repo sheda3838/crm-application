@@ -41,6 +41,7 @@ const Dashboard = () => {
   const summary = data?.summary || {
     totalLeads: { value: 0, trend: '0%' },
     totalRevenue: { value: 0, trend: '0%' },
+    totalEstimatedValue: { value: 0, trend: '0%' },
     conversionRate: { value: 0, trend: '0%' },
     activeDeals: { value: 0, trend: '0%' }
   };
@@ -60,10 +61,10 @@ const Dashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       >
-        <StatCard title="Total Pipeline" value={summary.totalLeads.value} trend={summary.totalLeads.trend} icon={Users} color="bg-rose-500" iconColor="text-rose-500" bgLight="bg-rose-100" />
-        <StatCard title="Total Revenue" value={`$${summary.totalRevenue.value.toLocaleString()}`} trend={summary.totalRevenue.trend} icon={DollarSign} color="bg-blue-500" iconColor="text-blue-500" bgLight="bg-blue-100" />
-        <StatCard title="Conversion Rate" value={`${summary.conversionRate.value}%`} trend={summary.conversionRate.trend} icon={Target} color="bg-amber-500" iconColor="text-amber-500" bgLight="bg-amber-100" />
-        <StatCard title="Active Deals" value={summary.activeDeals.value} trend={summary.activeDeals.trend} icon={Activity} color="bg-fuchsia-500" iconColor="text-fuchsia-500" bgLight="bg-fuchsia-100" />
+        <StatCard title="Total Leads" value={summary.totalLeads.value} trend={summary.totalLeads.trend} icon={Users} color="bg-rose-500" iconColor="text-rose-500" bgLight="bg-rose-100" />
+        <StatCard title="Won Revenue" value={`$${summary.totalRevenue.value.toLocaleString()}`} trend={summary.totalRevenue.trend} icon={DollarSign} color="bg-blue-500" iconColor="text-blue-500" bgLight="bg-blue-100" />
+        <StatCard title="Pipeline Value" value={`$${summary.totalEstimatedValue.value.toLocaleString()}`} trend={summary.totalEstimatedValue.trend} icon={Target} color="bg-amber-500" iconColor="text-amber-500" bgLight="bg-amber-100" />
+        <StatCard title="Conversion Rate" value={`${summary.conversionRate.value}%`} trend={summary.conversionRate.trend} icon={Activity} color="bg-fuchsia-500" iconColor="text-fuchsia-500" bgLight="bg-fuchsia-100" />
       </motion.section>
 
       {/* Middle Row: 3 Charts */}
