@@ -30,4 +30,11 @@ app.use('/api/dashboard', dashboardRoutes);
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use.`);
+  } else {
+    console.error('Server error:', err);
+  }
+  process.exit(1);
 });

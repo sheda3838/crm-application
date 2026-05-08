@@ -8,7 +8,7 @@ const StatusPieChart = ({ data }) => {
   return (
     <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-sm min-h-[420px] flex flex-col">
       <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-8 tracking-tight">Lead Status Pipeline</h3>
-      <div className="flex-1">
+      <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie

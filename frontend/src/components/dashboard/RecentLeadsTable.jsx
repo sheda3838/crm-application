@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const RecentLeadsTable = ({ leads }) => {
+  const navigate = useNavigate();
+  
   const getStatusStyle = (status) => {
     switch (status) {
       case 'Won': return 'bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400';
@@ -20,7 +23,10 @@ const RecentLeadsTable = ({ leads }) => {
           <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Recent Activity</h3>
           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Latest lead interactions</p>
         </div>
-        <button className="px-5 py-2.5 bg-slate-50 dark:bg-slate-800 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+        <button 
+          onClick={() => navigate('/leads')}
+          className="px-5 py-2.5 bg-slate-50 dark:bg-slate-800 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700"
+        >
           View All
         </button>
       </div>

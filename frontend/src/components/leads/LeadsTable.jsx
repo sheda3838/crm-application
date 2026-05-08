@@ -10,15 +10,15 @@ const LeadsTable = ({ leads, onEdit, onDelete }) => {
   return (
     <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col w-full">
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-left border-collapse table-auto">
           <thead>
             <tr className="bg-slate-50/50 dark:bg-slate-800/30">
-              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap">Lead Info</th>
-              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap">Company</th>
-              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap">Status</th>
-              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap">Source</th>
-              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap">Deal Value</th>
-              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap text-right">Actions</th>
+              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap w-[25%]">Lead Info</th>
+              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap w-[20%]">Company</th>
+              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap w-[15%]">Status</th>
+              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap w-[15%]">Source</th>
+              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap w-[15%]">Deal Value</th>
+              <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] whitespace-nowrap text-right w-[10%]">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -31,9 +31,9 @@ const LeadsTable = ({ leads, onEdit, onDelete }) => {
             ) : (
               leads.map((lead, index) => (
                 <motion.tr 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.5) }}
                   key={lead.id} 
                   className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors group"
                 >

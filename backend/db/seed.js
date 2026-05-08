@@ -69,6 +69,7 @@ export default async function seedDB(db) {
       if (err) return reject(err);
       
       // Only seed if less than 10 leads exist
+      // Only seed if less than 10 leads exist
       if (row.count > 10) {
         console.log('Database already populated with leads. Skipping seed.');
         return resolve();
@@ -130,7 +131,7 @@ export default async function seedDB(db) {
           for (let i = 0; i < targetLeads; i++) {
             const firstName = getRandomItem(FIRST_NAMES);
             const lastName = getRandomItem(LAST_NAMES);
-            const company = Math.random() > 0.2 ? getRandomItem(COMPANIES) : '';
+            const company = Math.random() > 0.05 ? getRandomItem(COMPANIES) : 'Private'; // Most leads have a company, or 'Private' if individual
             const email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${company ? company.replace(/\s+/g, '').toLowerCase() + '.com' : 'email.com'}`;
             const phone = `555-${getRandomInt(100, 999)}-${getRandomInt(1000, 9999)}`;
             const dealValue = getRandomInt(10, 500) * 100;

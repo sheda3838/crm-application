@@ -58,11 +58,12 @@ const LeadFilters = ({ filters, setFilters }) => {
             className="w-full pl-10 pr-8 py-3.5 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 rounded-[1.5rem] focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm font-bold text-slate-700 dark:text-slate-300 appearance-none cursor-pointer transition-all"
           >
             <option value="">All Sources</option>
-            <option value="Organic Search">Organic Search</option>
+            <option value="Website">Website</option>
+            <option value="LinkedIn">LinkedIn</option>
             <option value="Referral">Referral</option>
-            <option value="Social Media">Social Media</option>
-            <option value="Cold Call">Cold Call</option>
-            <option value="Email Campaign">Email Campaign</option>
+            <option value="Cold Email">Cold Email</option>
+            <option value="Event">Event</option>
+            <option value="Facebook Ads">Facebook Ads</option>
           </select>
         </div>
       </div>
