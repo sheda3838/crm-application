@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div 
       className="min-h-screen w-full flex items-center justify-center relative bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url('/login.png')` }}
+      style={{ backgroundImage: `url('/login.jpg')` }}
     >
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
@@ -59,7 +59,7 @@ const Login = () => {
             alignItems: 'center'
           }}
         >
-          <h1 className="text-[32px] font-bold text-white tracking-wide mb-10">Login</h1>
+          <h1 className="text-[32px] font-bold text-slate-900 tracking-wide mb-10">Login</h1>
 
           <form onSubmit={handleSubmit} className="w-full flex flex-col">
             <AnimatePresence mode="wait">
@@ -68,7 +68,7 @@ const Login = () => {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="flex items-center gap-2 p-3 bg-red-500/20 border border-red-500/40 text-red-100 rounded-lg text-sm mb-6"
+                  className="flex items-center gap-2 p-3 bg-red-500/20 border border-red-500/40 text-red-700 rounded-lg text-sm mb-6"
                 >
                   <AlertCircle size={16} className="shrink-0" />
                   {error}
@@ -85,7 +85,7 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Username"
-                  className="w-full pb-2 bg-transparent border-0 border-b border-white/60 focus:border-white focus:ring-0 text-white placeholder:text-white transition-colors outline-none text-[16px]"
+                  className="w-full pb-2 bg-transparent border-0 border-b border-slate-300 focus:border-slate-900 focus:ring-0 text-slate-900 placeholder:text-slate-400 transition-colors outline-none text-[16px]"
                   style={{ boxShadow: 'none' }}
                 />
               </div>
@@ -98,7 +98,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="w-full pb-2 bg-transparent border-0 border-b border-white/60 focus:border-white focus:ring-0 text-white placeholder:text-white transition-colors outline-none text-[16px]"
+                  className="w-full pb-2 bg-transparent border-0 border-b border-slate-300 focus:border-slate-900 focus:ring-0 text-slate-900 placeholder:text-slate-400 transition-colors outline-none text-[16px]"
                   style={{ boxShadow: 'none' }}
                 />
               </div>
@@ -111,15 +111,15 @@ const Login = () => {
                 id="remember" 
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-4 h-4 rounded-sm border border-white bg-white appearance-none checked:bg-white checked:relative cursor-pointer transition-colors focus:outline-none flex items-center justify-center shrink-0"
+                className="w-4 h-4 rounded-sm border border-slate-400 bg-white appearance-none checked:bg-slate-900 checked:relative cursor-pointer transition-colors focus:outline-none flex items-center justify-center shrink-0"
                 style={{
-                  backgroundImage: rememberMe ? `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%231a0b2e' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e")` : 'none',
+                  backgroundImage: rememberMe ? `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e")` : 'none',
                   backgroundSize: '100% 100%',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
                 }}
               />
-              <label htmlFor="remember" className="text-white text-[15px] cursor-pointer select-none">
+              <label htmlFor="remember" className="text-slate-600 text-[15px] cursor-pointer select-none">
                 Remember me
               </label>
             </div>
